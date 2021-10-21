@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/kill.ogg-c23eaf3b514361c8c6b41df2c7b54257.oggstr"
+
+[deps]
+
+source_file="res://assets/gothicvania church/assets/sounds/kill.ogg"
+dest_files=[ "res://.import/kill.ogg-c23eaf3b514361c8c6b41df2c7b54257.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/Fogo_1.png" type="Texture" id=2]
+[ext_resource path="res://assets/Fogo_2.png" type="Texture" id=3]
+[ext_resource path="res://assets/Fogo_3.png" type="Texture" id=4]
+[ext_resource path="res://assets/Fogo_4.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "burn",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 27.3203
+height = 0.0
+
+[node name="fire" type="StaticBody2D"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -96.1142, -106.294 )
+scale = Vector2( 0.648834, 0.587873 )
+frames = SubResource( 1 )
+animation = "burn"
+frame = 2
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1.91122, -5.22913 )
+shape = SubResource( 2 )

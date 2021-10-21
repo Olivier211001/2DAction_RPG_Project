@@ -1,0 +1,9 @@
+C:\Users\olivi\Desktop\cegep\session5\2DAction_RPG\.mono\temp\obj\Debug\RPG.csproj.AssemblyReference.cache
+C:\Users\olivi\Desktop\cegep\session5\2DAction_RPG\.mono\temp\obj\Debug\RPG.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\olivi\Desktop\cegep\session5\2DAction_RPG\.mono\temp\obj\Debug\RPG.AssemblyInfoInputs.cache
+C:\Users\olivi\Desktop\cegep\session5\2DAction_RPG\.mono\temp\obj\Debug\RPG.AssemblyInfo.cs
+C:\Users\olivi\Desktop\cegep\session5\2DAction_RPG\.mono\temp\obj\Debug\RPG.csproj.CoreCompileInputs.cache
+C:\Users\olivi\Desktop\cegep\session5\2DAction_RPG\.mono\temp\bin\Debug\RPG.dll
+C:\Users\olivi\Desktop\cegep\session5\2DAction_RPG\.mono\temp\bin\Debug\RPG.pdb
+C:\Users\olivi\Desktop\cegep\session5\2DAction_RPG\.mono\temp\obj\Debug\RPG.dll
+C:\Users\olivi\Desktop\cegep\session5\2DAction_RPG\.mono\temp\obj\Debug\RPG.pdb

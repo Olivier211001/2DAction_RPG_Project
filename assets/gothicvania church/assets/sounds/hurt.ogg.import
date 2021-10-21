@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hurt.ogg-2fb00e294de6eab6aec1f2f2219dfa86.oggstr"
+
+[deps]
+
+source_file="res://assets/gothicvania church/assets/sounds/hurt.ogg"
+dest_files=[ "res://.import/hurt.ogg-2fb00e294de6eab6aec1f2f2219dfa86.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
