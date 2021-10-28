@@ -10,6 +10,8 @@ public class Player : KinematicBody2D
 	public Vector2 Velocity;
 	public bool attacking = false;
 	public bool right;
+
+	PackedScene ARROW;
 	
 	AnimatedSprite currentSprite;
 
@@ -18,6 +20,7 @@ public class Player : KinematicBody2D
 
 	public override void _Ready(){	
 		currentSprite = GetNode<AnimatedSprite>("Sprite");
+		ARROW = (PackedScene)ResourceLoader.Load("res://arrow.tscn");
 	}
 	public Vector2 GetInput()
 	{
@@ -64,7 +67,9 @@ public class Player : KinematicBody2D
 			if(Input.IsActionJustReleased("Attack"))
 			{
 					//currentSprite.Stop();
+					
 					currentSprite.Play("Attack");
+					
 					attacking = true;
 			}
 			if(currentSprite.Frame == 5)
@@ -79,4 +84,18 @@ public class Player : KinematicBody2D
 	    }
 	    Velocity = MoveAndSlide(Velocity);
 	}
+	private void _on_Sprite_animation_finished()
+	{
+	  if(currentSprite.Animation == "Attack")
+	  {
+		  var position = GetNode<Position2D>("Position2D");
+		  var arrow = ARROW.Instance();
+		  GD.Print(((Area2D)arrow).Position);
+		  GetParent().AddChild(arrow);
+		  ((Area2D)(arrow)).Position = position.GlobalPosition;
+	  }
+	}
 }
+
+
+

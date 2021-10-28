@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://arrow.png" type="Texture" id=1]
+[ext_resource path="res://arrow.cs" type="Script" id=2]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "fleche",
+"speed": 5.0
+} ]
+
+[sub_resource type="SegmentShape2D" id=2]
+a = Vector2( 2.85449, -0.472839 )
+b = Vector2( -55.714, 0.121765 )
+
+[node name="arrow" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0.256985, 0.299988 )
+rotation = 1.59349
+scale = Vector2( 0.624612, 0.479514 )
+frames = SubResource( 1 )
+animation = "fleche"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 25.5679, -0.29731 )
+shape = SubResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -0.891897, -0.594593 )
+scale = Vector2( 3.1703, 0.613508 )
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
