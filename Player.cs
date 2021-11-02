@@ -1,19 +1,27 @@
 using Godot;
 using System;
 
+
+
 public class Player : KinematicBody2D
 {
    //bye
 	private int FRICTION = 100;
 	const int ACCELERATION = 300;
-	const int MAX_SPEED = 300;
+	const int MAX_SPEED = 400;
 	public Vector2 Velocity;
 	public bool attacking = false;
-	public bool right;
-
+	public bool right = true;
+	
 	PackedScene ARROW;
 	
+	PackedScene code; 
+
 	AnimatedSprite currentSprite;
+
+	Position2D position;
+
+	Position2D position2;
 
 	[Export]
 	public int Speed = 200;
@@ -21,6 +29,8 @@ public class Player : KinematicBody2D
 	public override void _Ready(){	
 		currentSprite = GetNode<AnimatedSprite>("Sprite");
 		ARROW = (PackedScene)ResourceLoader.Load("res://arrow.tscn");
+		position = GetNode<Position2D>("Position2D");
+		position2 = GetNode<Position2D>("Position2D2");
 	}
 	public Vector2 GetInput()
 	{
@@ -66,11 +76,10 @@ public class Player : KinematicBody2D
 		{
 			if(Input.IsActionJustReleased("Attack"))
 			{
-					//currentSprite.Stop();
+					//currentSprite.Stop();					
+				currentSprite.Play("Attack");
 					
-					currentSprite.Play("Attack");
-					
-					attacking = true;
+				attacking = true;
 			}
 			if(currentSprite.Frame == 5)
 			{
@@ -88,11 +97,21 @@ public class Player : KinematicBody2D
 	{
 	  if(currentSprite.Animation == "Attack")
 	  {
-		  var position = GetNode<Position2D>("Position2D");
 		  var arrow = ARROW.Instance();
 		  GD.Print(((Area2D)arrow).Position);
 		  GetParent().AddChild(arrow);
-		  ((Area2D)(arrow)).Position = position.GlobalPosition;
+		  var pos = position.GlobalPosition;
+		  var pos2 = position2.GlobalPosition;
+		  if(right)
+		  {
+			((Area2D)(arrow)).Position = pos;
+			((arrow)(arrow)).setArrowDirection(1);
+		  }
+		  else
+		  {
+			((Area2D)(arrow)).Position = pos2;
+			((arrow)(arrow)).setArrowDirection(-1);
+		  }
 	  }
 	}
 }

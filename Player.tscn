@@ -190,11 +190,17 @@ parameters/Idle/blend_position = Vector2( -0.00334448, 0 )
 ]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 2.97748, 9.34528 )
+position = Vector2( 4.03694, 9.08041 )
 shape = SubResource( 28 )
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 60, -10 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Position2D2" type="Position2D" parent="."]
+position = Vector2( -37.7434, -10.3298 )
 __meta__ = {
 "_edit_group_": true
 }
