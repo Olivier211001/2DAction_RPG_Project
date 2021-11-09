@@ -1,27 +1,39 @@
 using Godot;
 using System;
 
-
-
 public class Player : KinematicBody2D
 {
-   //bye
 	private int FRICTION = 100;
 	const int ACCELERATION = 300;
 	const int MAX_SPEED = 400;
 	public Vector2 Velocity;
 	public bool attacking = false;
 	public bool right = true;
+
+	public int life = 10;
 	
 	PackedScene ARROW;
 	
-	PackedScene code; 
+	PackedScene currentScene; 
 
 	AnimatedSprite currentSprite;
 
 	Position2D position;
 
 	Position2D position2;
+
+	public int Level = 1;
+
+	Vector2 knockback = Vector2.Zero;
+
+
+	AudioStreamPlayer ArrowSound;
+
+	AudioStreamPlayer HitSound;
+
+	public bool isHurted = false;
+
+	TextureProgress lifeBar;
 
 	[Export]
 	public int Speed = 200;
@@ -31,6 +43,9 @@ public class Player : KinematicBody2D
 		ARROW = (PackedScene)ResourceLoader.Load("res://arrow.tscn");
 		position = GetNode<Position2D>("Position2D");
 		position2 = GetNode<Position2D>("Position2D2");
+		ArrowSound = GetNode<AudioStreamPlayer>("ASound");
+		HitSound  = GetNode<AudioStreamPlayer>("hitSound");
+		lifeBar = GetNode<TextureProgress>("Camera2D/CanvasLayer/LifeBar/TextureProgress");
 	}
 	public Vector2 GetInput()
 	{
@@ -40,7 +55,7 @@ public class Player : KinematicBody2D
 	    input_vector.y = Input.GetActionStrength("ui_down") 
 	                        - Input.GetActionStrength("ui_up");	    
 	    input_vector = input_vector.Normalized();
-	    return input_vector;
+	    return input_vector;
 	}
 
 	public void direction(bool drct)
@@ -55,10 +70,13 @@ public class Player : KinematicBody2D
 	  }
 	} 
 
-	public override void _PhysicsProcess(float delta)
+	public override void _PhysicsProcess(float delta)
 	{	
+		GD.Print(Level);
+		knockback = knockback.MoveToward(Vector2.Zero, 200 * delta);
+		knockback = MoveAndSlide(knockback);
 	    var input_vector = GetInput();
-	    if (input_vector != Vector2.Zero) {
+	    if (input_vector != Vector2.Zero && attacking == false && isHurted == false) {
 			if(input_vector.x > 0 || input_vector.y > 0)
 			{
 				right = true;
@@ -69,34 +87,33 @@ public class Player : KinematicBody2D
 			}
 			direction(right);
 			currentSprite.Play("Run");
-			//aS.Travel("Run");
 	        Velocity = Velocity.MoveToward(input_vector * MAX_SPEED, ACCELERATION);
 	    }			
 		 else
 		{
 			if(Input.IsActionJustReleased("Attack"))
-			{
-					//currentSprite.Stop();					
-				currentSprite.Play("Attack");
-					
+			{				
+				currentSprite.Play("Attack");					
 				attacking = true;
 			}
 			if(currentSprite.Frame == 5)
 			{
 				attacking = false;
 			}
-			else if(attacking == false)
+			else if(attacking == false  && isHurted == false)
 			{
 				currentSprite.Play("Idle");
 			}
 			 Velocity = Velocity.MoveToward(Vector2.Zero, FRICTION);
 	    }
-	    Velocity = MoveAndSlide(Velocity);
+	    Velocity = MoveAndSlide(Velocity);
 	}
+	
 	private void _on_Sprite_animation_finished()
 	{
 	  if(currentSprite.Animation == "Attack")
 	  {
+		  ArrowSound.Play();
 		  var arrow = ARROW.Instance();
 		  GD.Print(((Area2D)arrow).Position);
 		  GetParent().AddChild(arrow);
@@ -113,8 +130,44 @@ public class Player : KinematicBody2D
 			((arrow)(arrow)).setArrowDirection(-1);
 		  }
 	  }
+	  else if(currentSprite.Animation == "Hurt")
+	  {
+		  isHurted = false;
+	  }
+	}
+	private void loseLife()
+	{
+		life--;
+		((TextureProgress)(lifeBar)).Value = life;
+		if(life == 0)
+		{
+			GetTree().ChangeScene("res://GameOver.tscn");
+		}
+		else
+		{
+			isHurted = true;
+			currentSprite.Play("Hurt");
+			knockback = Vector2.Left * 350;
+		}	
+	}
+	private void _on_detectEnnemy_area_entered(Area2D area)
+	{
+		HitSound.Play();
+		if(area.IsInGroup("a"))
+		{
+			loseLife();
+		}
 	}
 }
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/FARTReal_Pet 3 (ID 0241)_LS.ogg-0719af9851ce428da1fcd986f8981eff.oggstr"
+
+[deps]
+
+source_file="res://sound/FARTReal_Pet 3 (ID 0241)_LS.ogg"
+dest_files=[ "res://.import/FARTReal_Pet 3 (ID 0241)_LS.ogg-0719af9851ce428da1fcd986f8981eff.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

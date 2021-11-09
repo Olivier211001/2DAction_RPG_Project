@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://menu.png" type="Texture" id=1]
+[ext_resource path="res://fire.tscn" type="PackedScene" id=2]
+[ext_resource path="res://menu.cs" type="Script" id=3]
+[ext_resource path="res://sound/7_soldier_or_hero_HW_1636153690.ogg" type="AudioStream" id=4]
+
+[node name="menu" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_top = 160.0
+margin_right = 1024.0
+margin_bottom = 608.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start Game" type="Button" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 20.0
+custom_colors/font_color_hover = Color( 0.00392157, 0.454902, 0, 1 )
+text = "Start Game"
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+margin_top = 24.0
+margin_right = 1024.0
+margin_bottom = 44.0
+custom_colors/font_color_hover = Color( 0.00392157, 0.454902, 0, 1 )
+text = "Options"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 1024.0
+margin_bottom = 68.0
+custom_colors/font_color_hover = Color( 0.00392157, 0.454902, 0, 1 )
+text = "Exit"
+
+[node name="fire" parent="." instance=ExtResource( 2 )]
+position = Vector2( 520, 368 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 32, 272 )
+
+[node name="2" type="Position2D" parent="."]
+position = Vector2( 256, 512 )
+
+[node name="3" type="Position2D" parent="."]
+position = Vector2( 712, 368 )
+
+[node name="menusong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+[connection signal="mouse_entered" from="VBoxContainer/Start Game" to="." method="_on_Start_Game_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/Start Game" to="." method="_on_Start_Game_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Options" to="." method="_on_Options_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_Options_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Exit" to="." method="_on_Exit_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_Exit_pressed"]

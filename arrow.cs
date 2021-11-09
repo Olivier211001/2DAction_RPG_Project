@@ -10,11 +10,6 @@ public class arrow : Area2D
 	public string patate = "patate";
 	public int direction = 1;
 
-	public override void _Ready()
-	{
-		
-	}
-
 	public void setArrowDirection(int dir)
 	{
 		direction = dir;

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/7_soldier_or_hero_HW_1636153690.ogg-984f9e3caf1949ad8c091c56babdb74d.oggstr"
+
+[deps]
+
+source_file="res://sound/7_soldier_or_hero_HW_1636153690.ogg"
+dest_files=[ "res://.import/7_soldier_or_hero_HW_1636153690.ogg-984f9e3caf1949ad8c091c56babdb74d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

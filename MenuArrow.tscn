@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://arrow.tscn" type="PackedScene" id=1]
+
+[node name="menuArrow" type="Node2D"]
+
+[node name="arrow" parent="." instance=ExtResource( 1 )]
+position = Vector2( 104, 240 )
+
+[node name="arrow" parent="arrow" instance=ExtResource( 1 )]
+position = Vector2( 64, 104 )
+
+[node name="arrow2" parent="arrow" instance=ExtResource( 1 )]
+position = Vector2( 112, 240 )
+
+[node name="arrow3" parent="arrow" instance=ExtResource( 1 )]
+position = Vector2( 264, 160 )
+
+[node name="arrow4" parent="arrow" instance=ExtResource( 1 )]
+position = Vector2( 232, 48 )
+
+[node name="arrow5" parent="arrow" instance=ExtResource( 1 )]
+position = Vector2( 344, 264 )
+
+[node name="arrow6" parent="arrow" instance=ExtResource( 1 )]
+position = Vector2( 456, 16 )
+
+[node name="arrow7" parent="arrow" instance=ExtResource( 1 )]
+position = Vector2( 456, 160 )
+
+[node name="arrow8" parent="arrow" instance=ExtResource( 1 )]
+position = Vector2( 576, 264 )
+
+[node name="arrow9" parent="arrow" instance=ExtResource( 1 )]
+position = Vector2( 640, 88 )
+
+[node name="arrow10" parent="arrow" instance=ExtResource( 1 )]
+position = Vector2( 752, 208 )
+
+[node name="arrow11" parent="arrow" instance=ExtResource( 1 )]
+position = Vector2( 768, 48 )
+
+[node name="arrow2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 104, 408 )

@@ -1,8 +1,12 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://assets/Final/Idle and running.png" type="Texture" id=1]
 [ext_resource path="res://Player.cs" type="Script" id=2]
 [ext_resource path="res://assets/Final/Normal Attack.png" type="Texture" id=3]
+[ext_resource path="res://assets/Final/death.png" type="Texture" id=4]
+[ext_resource path="res://LifeBar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://sound/SWSH_Whoosh 3 (ID 1795)_LS.ogg" type="AudioStream" id=6]
+[ext_resource path="res://sound/Dramatic Boom - Sound Effect.ogg" type="AudioStream" id=7]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -68,7 +72,22 @@ region = Rect2( 256, 192, 64, 64 )
 atlas = ExtResource( 3 )
 region = Rect2( 320, 192, 64, 64 )
 
-[sub_resource type="SpriteFrames" id=17]
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 128, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 192, 64, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=20]
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ) ],
 "loop": true,
@@ -84,14 +103,18 @@ animations = [ {
 "loop": true,
 "name": "Attack",
 "speed": 10.0
+}, {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"loop": true,
+"name": "Hurt",
+"speed": 20.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=18]
+[sub_resource type="CapsuleShape2D" id=21]
 radius = 12.3505
 height = 15.6696
 
-[sub_resource type="Animation" id=19]
-resource_name = "Idle"
+[sub_resource type="Animation" id=22]
 length = 1.2
 loop = true
 tracks/0/type = "value"
@@ -107,8 +130,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=20]
-resource_name = "Run"
+[sub_resource type="Animation" id=23]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -124,74 +146,83 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=21]
-animation = "Idle"
-
-[sub_resource type="AnimationNodeAnimation" id=22]
-animation = "Idle"
-
-[sub_resource type="AnimationNodeAnimation" id=23]
-animation = "Idle"
-
 [sub_resource type="AnimationNodeAnimation" id=24]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=25]
-blend_point_0/node = SubResource( 21 )
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=28]
+blend_point_0/node = SubResource( 24 )
 blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 22 )
+blend_point_1/node = SubResource( 25 )
 blend_point_1/pos = Vector2( 0, 1 )
-blend_point_2/node = SubResource( 23 )
+blend_point_2/node = SubResource( 26 )
 blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 24 )
+blend_point_3/node = SubResource( 27 )
 blend_point_3/pos = Vector2( 0, -1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachine" id=26]
-states/Idle/node = SubResource( 25 )
+[sub_resource type="AnimationNodeStateMachine" id=29]
+states/Idle/node = SubResource( 28 )
 states/Idle/position = Vector2( 301, 88 )
 start_node = "Idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=27]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=30]
 
-[sub_resource type="RectangleShape2D" id=28]
-extents = Vector2( 22.3008, 39.4926 )
+[sub_resource type="RectangleShape2D" id=31]
+extents = Vector2( 40.792, 39.4926 )
+
+[sub_resource type="CapsuleShape2D" id=32]
+radius = 22.0662
+height = 28.0603
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-position = Vector2( 3.97838, 3.65173 )
+position = Vector2( 4.7003, 4.12367 )
 scale = Vector2( 1.98107, 2.12651 )
-frames = SubResource( 17 )
-animation = "Attack"
+frames = SubResource( 20 )
+animation = "Hurt"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 3.36633, 5.74044 )
-shape = SubResource( 18 )
+shape = SubResource( 21 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+limit_bottom = 9999996
 smoothing_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="LifeBar" parent="Camera2D/CanvasLayer" instance=ExtResource( 5 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")
-anims/Idle = SubResource( 19 )
-anims/Run = SubResource( 20 )
+anims/Idle = SubResource( 22 )
+anims/Run = SubResource( 23 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 26 )
+tree_root = SubResource( 29 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 27 )
+parameters/playback = SubResource( 30 )
 parameters/Idle/blend_position = Vector2( -0.00334448, 0 )
 
-[node name="Area2D" type="Area2D" parent="." groups=[
+[node name="LifeZone" type="Area2D" parent="." groups=[
 "player",
 ]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 4.03694, 9.08041 )
-shape = SubResource( 28 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LifeZone"]
+position = Vector2( 6.28694, 8.85847 )
+shape = SubResource( 31 )
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 60, -10 )
@@ -204,4 +235,20 @@ position = Vector2( -37.7434, -10.3298 )
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="detectEnnemy" type="Area2D" parent="." groups=[
+"enn",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectEnnemy"]
+self_modulate = Color( 0.247059, 0.784314, 0.0980392, 1 )
+position = Vector2( 4.71941, 13.6862 )
+shape = SubResource( 32 )
+
+[node name="ASound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="hitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
+[connection signal="area_entered" from="detectEnnemy" to="." method="_on_detectEnnemy_area_entered"]

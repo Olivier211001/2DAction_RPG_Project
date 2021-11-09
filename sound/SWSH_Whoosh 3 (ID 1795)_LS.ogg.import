@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/SWSH_Whoosh 3 (ID 1795)_LS.ogg-9b13268abe7c03b2f6dcddf036daf40c.oggstr"
+
+[deps]
+
+source_file="res://sound/SWSH_Whoosh 3 (ID 1795)_LS.ogg"
+dest_files=[ "res://.import/SWSH_Whoosh 3 (ID 1795)_LS.ogg-9b13268abe7c03b2f6dcddf036daf40c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

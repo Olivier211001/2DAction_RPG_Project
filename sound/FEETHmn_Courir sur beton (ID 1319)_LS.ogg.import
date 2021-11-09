@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/FEETHmn_Courir sur beton (ID 1319)_LS.ogg-d65d4b3b63626e08735d9feabf27b95f.oggstr"
+
+[deps]
+
+source_file="res://sound/FEETHmn_Courir sur beton (ID 1319)_LS.ogg"
+dest_files=[ "res://.import/FEETHmn_Courir sur beton (ID 1319)_LS.ogg-d65d4b3b63626e08735d9feabf27b95f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
