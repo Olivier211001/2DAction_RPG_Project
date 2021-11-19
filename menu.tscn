@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://menu.png" type="Texture" id=1]
 [ext_resource path="res://fire.tscn" type="PackedScene" id=2]
 [ext_resource path="res://menu.cs" type="Script" id=3]
 [ext_resource path="res://sound/7_soldier_or_hero_HW_1636153690.ogg" type="AudioStream" id=4]
+[ext_resource path="res://21024.png" type="Texture" id=5]
 
 [node name="menu" type="Node2D"]
 script = ExtResource( 3 )
@@ -57,7 +58,7 @@ custom_colors/font_color_hover = Color( 0.00392157, 0.454902, 0, 1 )
 text = "Exit"
 
 [node name="fire" parent="." instance=ExtResource( 2 )]
-position = Vector2( 520, 368 )
+position = Vector2( 512, 480 )
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 32, 272 )
@@ -71,9 +72,28 @@ position = Vector2( 712, 368 )
 [node name="menusong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 autoplay = true
+
+[node name="volume" type="Button" parent="."]
+margin_left = 880.0
+margin_top = 520.0
+margin_right = 1008.0
+margin_bottom = 576.0
+focus_mode = 0
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+enabled_focus_mode = 0
+text = "Volume on"
+icon = ExtResource( 5 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="mouse_entered" from="VBoxContainer/Start Game" to="." method="_on_Start_Game_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Start Game" to="." method="_on_Start_Game_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/Options" to="." method="_on_Options_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_Options_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/Exit" to="." method="_on_Exit_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="volume" to="." method="_on_Button_pressed"]

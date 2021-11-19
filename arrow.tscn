@@ -14,8 +14,8 @@ animations = [ {
 } ]
 
 [sub_resource type="SegmentShape2D" id=3]
-a = Vector2( 2.85449, -0.472839 )
-b = Vector2( -55.714, 0.121765 )
+a = Vector2( -12.1622, 0.351437 )
+b = Vector2( -52.0006, -0.243164 )
 
 [sub_resource type="ShaderMaterial" id=4]
 
@@ -26,18 +26,18 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = SubResource( 1 )
-position = Vector2( 0.256985, 0.299988 )
+position = Vector2( 0.256985, 0.00268576 )
 rotation = 1.59349
-scale = Vector2( 0.624612, 0.479514 )
+scale = Vector2( 0.402924, 0.319511 )
 frames = SubResource( 2 )
 animation = "fleche"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 25.5679, -0.29731 )
+position = Vector2( 31.2166, -0.445961 )
 shape = SubResource( 3 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 material = SubResource( 4 )
-position = Vector2( -0.891897, -0.594593 )
-scale = Vector2( 3.1703, 0.613508 )
+position = Vector2( 0.222983, -0.445942 )
+scale = Vector2( 2.22637, 0.405397 )
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

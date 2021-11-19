@@ -4,7 +4,7 @@
 [ext_resource path="res://Player.cs" type="Script" id=2]
 [ext_resource path="res://assets/Final/Normal Attack.png" type="Texture" id=3]
 [ext_resource path="res://assets/Final/death.png" type="Texture" id=4]
-[ext_resource path="res://LifeBar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Interface .tscn" type="PackedScene" id=5]
 [ext_resource path="res://sound/SWSH_Whoosh 3 (ID 1795)_LS.ogg" type="AudioStream" id=6]
 [ext_resource path="res://sound/Dramatic Boom - Sound Effect.ogg" type="AudioStream" id=7]
 
@@ -111,7 +111,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=21]
-radius = 12.3505
+radius = 9.93038
 height = 15.6696
 
 [sub_resource type="Animation" id=22]
@@ -177,23 +177,23 @@ start_node = "Idle"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=30]
 
 [sub_resource type="RectangleShape2D" id=31]
-extents = Vector2( 40.792, 39.4926 )
+extents = Vector2( 33.7831, 36.1075 )
 
 [sub_resource type="CapsuleShape2D" id=32]
-radius = 22.0662
+radius = 13.9319
 height = 28.0603
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-position = Vector2( 4.7003, 4.12367 )
-scale = Vector2( 1.98107, 2.12651 )
+position = Vector2( 1.07802, -0.601027 )
+scale = Vector2( 1.66117, 1.74263 )
 frames = SubResource( 20 )
-animation = "Hurt"
+animation = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 3.36633, 5.74044 )
+position = Vector2( -1.0434, 5.42546 )
 shape = SubResource( 21 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -203,7 +203,7 @@ smoothing_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
-[node name="LifeBar" parent="Camera2D/CanvasLayer" instance=ExtResource( 5 )]
+[node name="Interface" parent="Camera2D/CanvasLayer" instance=ExtResource( 5 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")
@@ -221,17 +221,17 @@ parameters/Idle/blend_position = Vector2( -0.00334448, 0 )
 ]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LifeZone"]
-position = Vector2( 6.28694, 8.85847 )
+position = Vector2( -0.0126801, 4.76372 )
 shape = SubResource( 31 )
 
 [node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 60, -10 )
+position = Vector2( 43.306, -11.5749 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Position2D2" type="Position2D" parent="."]
-position = Vector2( -37.7434, -10.3298 )
+position = Vector2( -43.2082, -12.2197 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -242,7 +242,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detectEnnemy"]
 self_modulate = Color( 0.247059, 0.784314, 0.0980392, 1 )
-position = Vector2( 4.71941, 13.6862 )
+position = Vector2( -0.00528717, 7.07162 )
 shape = SubResource( 32 )
 
 [node name="ASound" type="AudioStreamPlayer" parent="."]

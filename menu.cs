@@ -7,12 +7,17 @@ public class menu : Node2D
 	Position2D position;
 	Position2D position2;
 	Position2D position3;
+	AudioStreamPlayer music;
+	Button musciButton;
+	float  musicPosition = 0;
 	public override void _Ready()
 	{
 		ARROW = (PackedScene)ResourceLoader.Load("res://arrow.tscn");
 		position = GetNode<Position2D>("Position2D");
 		position2 = GetNode<Position2D>("2");
 		position3 = GetNode<Position2D>("3");
+		music = GetNode<AudioStreamPlayer>("menusong");
+		musciButton = GetNode<Button>("volume");
 	}
 	private void _on_Start_Game_pressed()
 	{
@@ -58,7 +63,25 @@ public class menu : Node2D
 		((arrow)(arrow2)).setArrowDirection(1);
 		((arrow)(arrow3)).setArrowDirection(1);
 	}
+	
+	private void _on_Button_pressed()
+	{
+		if(music.Playing == true)
+		{
+			musicPosition = music.GetPlaybackPosition();
+			music.Stop();
+			musciButton.Text = "Volume Off";
+		}
+		else
+		{
+			music.Play(musicPosition);
+			musciButton.Text = "Volume On";
+		}
+	}
 }
+
+
+
 
 
 

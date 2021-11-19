@@ -1,12 +1,78 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://LifeBar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Interface.cs" type="Script" id=2]
 
-[node name="Interface " type="Control"]
-margin_right = 1024.0
-margin_bottom = 600.0
+[node name="Interface" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 0.987
+margin_bottom = 7.79999
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LifeBar" parent="." instance=ExtResource( 1 )]
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0.243137, 1, 0, 1 )
+margin_left = 8.0
+margin_top = 56.0
+margin_right = 200.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "I'm very healthy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseOverlay" type="ColorRect" parent="."]
+pause_mode = 2
+visible = false
+margin_right = 1032.0
+margin_bottom = 600.0
+color = Color( 0.427451, 0.427451, 0.427451, 0.466667 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PauseOverlay"]
+margin_left = 304.0
+margin_top = 88.0
+margin_right = 736.0
+margin_bottom = 304.0
+size_flags_horizontal = 9
+size_flags_vertical = 5
+size_flags_stretch_ratio = 3.53
+text = "Pause"
+align = 1
+valign = 1
+max_lines_visible = 11
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseOverlay"]
+margin_left = 432.0
+margin_top = 232.0
+margin_right = 600.0
+margin_bottom = 392.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" type="Button" parent="PauseOverlay/VBoxContainer"]
+modulate = Color( 0.266667, 0.678431, 0.858824, 1 )
+margin_right = 168.0
+margin_bottom = 20.0
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="PauseOverlay/VBoxContainer"]
+modulate = Color( 1, 0, 0, 1 )
+margin_top = 48.0
+margin_right = 168.0
+margin_bottom = 68.0
+text = "Quit Game"
+[connection signal="pressed" from="PauseOverlay/VBoxContainer/MainMenu" to="." method="_on_MainMenu_pressed"]
+[connection signal="pressed" from="PauseOverlay/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

@@ -34,6 +34,10 @@ public class Player : KinematicBody2D
 	public bool isHurted = false;
 
 	TextureProgress lifeBar;
+	Label color;
+	bool p = false;
+
+	ColorRect menuPause;  
 
 	[Export]
 	public int Speed = 200;
@@ -45,10 +49,14 @@ public class Player : KinematicBody2D
 		position2 = GetNode<Position2D>("Position2D2");
 		ArrowSound = GetNode<AudioStreamPlayer>("ASound");
 		HitSound  = GetNode<AudioStreamPlayer>("hitSound");
-		lifeBar = GetNode<TextureProgress>("Camera2D/CanvasLayer/LifeBar/TextureProgress");
+		//GD.Print(GetNode<Control>("Camera2D/CanvasLayer/Interface"));
+		lifeBar = GetNode<TextureProgress>("Camera2D/CanvasLayer/Interface/LifeBar/TextureProgress");
+		color = GetNode<Label>("Camera2D/CanvasLayer/Interface/Label");
+		menuPause = GetNode<ColorRect>("Camera2D/CanvasLayer/Interface/PauseOverlay");
 	}
 	public Vector2 GetInput()
 	{
+		
 	    var input_vector = Vector2.Zero;
 	    input_vector.x = Input.GetActionStrength("ui_right") 
 	                        - Input.GetActionStrength("ui_left");
@@ -72,7 +80,7 @@ public class Player : KinematicBody2D
 
 	public override void _PhysicsProcess(float delta)
 	{	
-		GD.Print(Level);
+		//GD.Print(Level);
 		knockback = knockback.MoveToward(Vector2.Zero, 200 * delta);
 		knockback = MoveAndSlide(knockback);
 	    var input_vector = GetInput();
@@ -88,10 +96,10 @@ public class Player : KinematicBody2D
 			direction(right);
 			currentSprite.Play("Run");
 	        Velocity = Velocity.MoveToward(input_vector * MAX_SPEED, ACCELERATION);
-	    }			
+	    }
 		 else
 		{
-			if(Input.IsActionJustReleased("Attack"))
+			if(Input.IsActionJustReleased("Attack") && isHurted == false)
 			{				
 				currentSprite.Play("Attack");					
 				attacking = true;
@@ -115,7 +123,7 @@ public class Player : KinematicBody2D
 	  {
 		  ArrowSound.Play();
 		  var arrow = ARROW.Instance();
-		  GD.Print(((Area2D)arrow).Position);
+		  //GD.Print(((Area2D)arrow).Position);
 		  GetParent().AddChild(arrow);
 		  var pos = position.GlobalPosition;
 		  var pos2 = position2.GlobalPosition;
@@ -145,6 +153,18 @@ public class Player : KinematicBody2D
 		}
 		else
 		{
+			Color yellow = new Color(247, 255, 0, 255);
+			Color red= new Color(255, 0, 0, 255);
+			if(life == 7)
+			{
+				color.Modulate = yellow;
+				color.Text = "Lost energy ...";
+			}
+			if(life == 4)
+			{
+				color.Modulate = red;
+				color.Text = "*Almost dead*";
+			}
 			isHurted = true;
 			currentSprite.Play("Hurt");
 			knockback = Vector2.Left * 350;
@@ -157,6 +177,11 @@ public class Player : KinematicBody2D
 		{
 			loseLife();
 		}
+	}
+	private void set_menuPause(Boolean value)
+	{
+		GetTree().Paused = value;
+		menuPause.Visible = value;
 	}
 }
 
