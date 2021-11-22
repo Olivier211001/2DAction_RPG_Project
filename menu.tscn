@@ -74,9 +74,9 @@ stream = ExtResource( 4 )
 autoplay = true
 
 [node name="volume" type="Button" parent="."]
-margin_left = 880.0
+margin_left = 864.0
 margin_top = 520.0
-margin_right = 1008.0
+margin_right = 992.0
 margin_bottom = 576.0
 focus_mode = 0
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )

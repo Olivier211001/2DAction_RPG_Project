@@ -39,6 +39,8 @@ public class Player : KinematicBody2D
 
 	ColorRect menuPause;  
 
+	public int nbcible;
+
 	[Export]
 	public int Speed = 200;
 
@@ -145,6 +147,8 @@ public class Player : KinematicBody2D
 	}
 	private void loseLife()
 	{
+		attacking = false;
+		HitSound.Play();
 		life--;
 		((TextureProgress)(lifeBar)).Value = life;
 		if(life == 0)
@@ -172,7 +176,6 @@ public class Player : KinematicBody2D
 	}
 	private void _on_detectEnnemy_area_entered(Area2D area)
 	{
-		HitSound.Play();
 		if(area.IsInGroup("a"))
 		{
 			loseLife();

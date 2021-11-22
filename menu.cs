@@ -46,6 +46,7 @@ public class menu : Node2D
 	}
 	private void createArrow()
 	{
+		GD.Print("create arrow");
 		var arrow = ARROW.Instance();
 		var arrow2 = ARROW.Instance();
 		var arrow3 = ARROW.Instance();
