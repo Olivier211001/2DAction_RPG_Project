@@ -25,6 +25,8 @@ public class EndingScene : Node2D
 	}
 	private void _on_Restart_pressed()
 	{
+		Player.life = 10;
+		cible.count = 0;
 		GetTree().ChangeScene("res://Level1.tscn");
 	}
 	private void _on_Quit_Game_pressed()

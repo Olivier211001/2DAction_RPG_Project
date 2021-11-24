@@ -3,13 +3,25 @@ using System;
 
 public class Interface  : Control
 {
-   
-   	bool p = false;
+	private Label vectorX;
 
-	ColorRect menuPause;   
+	private Label vectorY;
+   	private bool p = false;
+
+	private ColorRect menuPause;   
 	public override void _Ready()
 	{
 		menuPause = GetNode<ColorRect>("PauseOverlay");
+		vectorX = GetNode<Label>("speed");
+		vectorY = GetNode<Label>("vectorY");
+	}
+
+	public override void _PhysicsProcess(float delta)
+	{
+		string sx = Player.speedX.ToString();
+		string sy = Player.speedY.ToString();
+		vectorX.Text = sx;
+		vectorY.Text = sy; 
 	}
 
 	public override void _UnhandledInput(InputEvent @event)

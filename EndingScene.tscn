@@ -21,7 +21,8 @@ margin_left = 392.0
 margin_top = 128.0
 margin_right = -375.872
 margin_bottom = -400.0
-text = "GAME IS FINISH"
+text = "GAME IS FINISHED
+"
 align = 1
 valign = 1
 uppercase = true

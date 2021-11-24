@@ -18,13 +18,13 @@ radius = 27.3203
 height = 0.0
 
 [node name="fire" type="StaticBody2D"]
+collision_layer = 0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -96.1142, -106.294 )
 scale = Vector2( 0.648834, 0.587873 )
 frames = SubResource( 1 )
 animation = "burn"
-frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

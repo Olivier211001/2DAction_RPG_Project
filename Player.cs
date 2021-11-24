@@ -10,7 +10,7 @@ public class Player : KinematicBody2D
 	public bool attacking = false;
 	public bool right = true;
 
-	public int life = 10;
+	public static int life = 10;
 	
 	PackedScene ARROW;
 	
@@ -41,8 +41,16 @@ public class Player : KinematicBody2D
 
 	public int nbcible;
 
+	public static float speedX;
+	public static float speedY;
+
 	[Export]
 	public int Speed = 200;
+	Color yellow = new Color(247, 255, 0, 255);
+	Color red= new Color(255, 0, 0, 255);
+	Color blue = new Color(0, 28, 255, 255);
+
+	Color white = new Color(255,255,255,255);
 
 	public override void _Ready(){	
 		currentSprite = GetNode<AnimatedSprite>("Sprite");
@@ -51,8 +59,6 @@ public class Player : KinematicBody2D
 		position2 = GetNode<Position2D>("Position2D2");
 		ArrowSound = GetNode<AudioStreamPlayer>("ASound");
 		HitSound  = GetNode<AudioStreamPlayer>("hitSound");
-		//GD.Print(GetNode<Control>("Camera2D/CanvasLayer/Interface"));
-		lifeBar = GetNode<TextureProgress>("Camera2D/CanvasLayer/Interface/LifeBar/TextureProgress");
 		color = GetNode<Label>("Camera2D/CanvasLayer/Interface/Label");
 		menuPause = GetNode<ColorRect>("Camera2D/CanvasLayer/Interface/PauseOverlay");
 	}
@@ -82,7 +88,22 @@ public class Player : KinematicBody2D
 
 	public override void _PhysicsProcess(float delta)
 	{	
-		//GD.Print(Level);
+		if(life <= 7)
+		{
+			color.Modulate = yellow;
+			color.Text = "Lost energy ...";
+		}
+		if(life > 7)
+		{
+			color.SelfModulate = white;
+			color.Modulate = blue;
+			color.Text = "I'm very healthy";
+		}
+		if(life <= 4)
+		{
+			color.Modulate = red;
+			color.Text = "*Almost dead*";
+		}
 		knockback = knockback.MoveToward(Vector2.Zero, 200 * delta);
 		knockback = MoveAndSlide(knockback);
 	    var input_vector = GetInput();
@@ -98,6 +119,8 @@ public class Player : KinematicBody2D
 			direction(right);
 			currentSprite.Play("Run");
 	        Velocity = Velocity.MoveToward(input_vector * MAX_SPEED, ACCELERATION);
+			speedX = input_vector.x;
+			speedY = input_vector.y;
 	    }
 		 else
 		{
@@ -125,7 +148,6 @@ public class Player : KinematicBody2D
 	  {
 		  ArrowSound.Play();
 		  var arrow = ARROW.Instance();
-		  //GD.Print(((Area2D)arrow).Position);
 		  GetParent().AddChild(arrow);
 		  var pos = position.GlobalPosition;
 		  var pos2 = position2.GlobalPosition;
@@ -150,25 +172,12 @@ public class Player : KinematicBody2D
 		attacking = false;
 		HitSound.Play();
 		life--;
-		((TextureProgress)(lifeBar)).Value = life;
 		if(life == 0)
 		{
 			GetTree().ChangeScene("res://GameOver.tscn");
 		}
 		else
 		{
-			Color yellow = new Color(247, 255, 0, 255);
-			Color red= new Color(255, 0, 0, 255);
-			if(life == 7)
-			{
-				color.Modulate = yellow;
-				color.Text = "Lost energy ...";
-			}
-			if(life == 4)
-			{
-				color.Modulate = red;
-				color.Text = "*Almost dead*";
-			}
 			isHurted = true;
 			currentSprite.Play("Hurt");
 			knockback = Vector2.Left * 350;

@@ -37,7 +37,20 @@ public class door : KinematicBody2D
 			doorAnim.Play("open");
 		}
 	}
+	private void _on_changeLevel_area_entered(Area2D area)
+	{
+		if(area.IsInGroup("player"))
+		{
+			if(cible.count >= 6)
+			{
+				GetTree().ChangeScene("res://EndingScene.tscn");
+			}
+		}
+	}
 }
+
+
+
 
 
 
