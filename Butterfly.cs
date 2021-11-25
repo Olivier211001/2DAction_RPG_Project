@@ -32,7 +32,7 @@ public class Butterfly : KinematicBody2D
 		if(player != null)
 		{
 			 //butterfly.Play("fly");
-			 direction = ((player.GlobalPosition) - this.GlobalPosition).Normalized();
+			 direction = ((Player.pos) - this.GlobalPosition).Normalized();
 			 Velocity = Velocity.MoveToward(direction * MAX_SPEED, ACCELERATION);
 		}
 		 Velocity = MoveAndSlide(Velocity);

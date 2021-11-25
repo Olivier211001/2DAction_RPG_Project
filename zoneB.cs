@@ -12,7 +12,7 @@ public class zoneB : Area2D
 
 	private void _on_zoneB_body_entered(KinematicBody2D body)
 	{
-		GD.Print("allo");
+		//GD.Print("allo");
 		player = body;
 	}
 

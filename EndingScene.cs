@@ -10,7 +10,9 @@ public class EndingScene : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		
+		Player.life = 10;
+		cible.count = 0;
+		Player.Level = 1;
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,8 +27,6 @@ public class EndingScene : Node2D
 	}
 	private void _on_Restart_pressed()
 	{
-		Player.life = 10;
-		cible.count = 0;
 		GetTree().ChangeScene("res://Level1.tscn");
 	}
 	private void _on_Quit_Game_pressed()

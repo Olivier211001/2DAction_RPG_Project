@@ -43,7 +43,8 @@ public class door : KinematicBody2D
 		{
 			if(cible.count >= 6)
 			{
-				GetTree().ChangeScene("res://EndingScene.tscn");
+				Player.Level = 3;
+				GetTree().ChangeScene("res://Level3.tscn");
 			}
 		}
 	}

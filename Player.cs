@@ -4,45 +4,47 @@ using System;
 public class Player : KinematicBody2D
 {
 	private int FRICTION = 100;
-	const int ACCELERATION = 300;
-	const int MAX_SPEED = 400;
+	private const int ACCELERATION = 300;
+	private const int MAX_SPEED = 400;
 	public Vector2 Velocity;
 	public bool attacking = false;
 	public bool right = true;
 
 	public static int life = 10;
 	
-	PackedScene ARROW;
+	private PackedScene ARROW;
 	
-	PackedScene currentScene; 
+	private PackedScene currentScene; 
 
-	AnimatedSprite currentSprite;
+	private AnimatedSprite currentSprite;
 
-	Position2D position;
+	private Position2D position;
 
-	Position2D position2;
+	private Position2D position2;
 
-	public int Level = 1;
+	public static int Level = 1;
 
-	Vector2 knockback = Vector2.Zero;
+	private Vector2 knockback = Vector2.Zero;
 
 
-	AudioStreamPlayer ArrowSound;
+	private AudioStreamPlayer ArrowSound;
 
-	AudioStreamPlayer HitSound;
+	private AudioStreamPlayer HitSound;
 
 	public bool isHurted = false;
 
-	TextureProgress lifeBar;
-	Label color;
-	bool p = false;
+	private TextureProgress lifeBar;
+	private Label color;
+	private bool p = false;
 
-	ColorRect menuPause;  
+	private ColorRect menuPause;  
 
 	public int nbcible;
 
 	public static float speedX;
 	public static float speedY;
+
+	public static Vector2 pos;
 
 	[Export]
 	public int Speed = 200;
@@ -88,6 +90,7 @@ public class Player : KinematicBody2D
 
 	public override void _PhysicsProcess(float delta)
 	{	
+		pos = this.GlobalPosition;
 		if(life <= 7)
 		{
 			color.Modulate = yellow;
@@ -121,6 +124,7 @@ public class Player : KinematicBody2D
 	        Velocity = Velocity.MoveToward(input_vector * MAX_SPEED, ACCELERATION);
 			speedX = input_vector.x;
 			speedY = input_vector.y;
+			//GD.Print(this.GlobalPosition);
 	    }
 		 else
 		{
@@ -167,11 +171,11 @@ public class Player : KinematicBody2D
 		  isHurted = false;
 	  }
 	}
-	private void loseLife()
+	private void loseLife(int knock, int lostlife, string ennemy)
 	{
 		attacking = false;
 		HitSound.Play();
-		life--;
+		life -= lostlife;
 		if(life == 0)
 		{
 			GetTree().ChangeScene("res://GameOver.tscn");
@@ -180,20 +184,61 @@ public class Player : KinematicBody2D
 		{
 			isHurted = true;
 			currentSprite.Play("Hurt");
-			knockback = Vector2.Left * 350;
+			if(ennemy == "death")
+			{			
+				if(death.direction.x > 0)
+				{
+					knockback = Vector2.Right * knock;
+				}
+				else
+				{
+					knockback = Vector2.Left * knock;
+				}
+			}
+			else
+			{
+				knockback = Vector2.Left * knock;
+			}		
 		}	
 	}
 	private void _on_detectEnnemy_area_entered(Area2D area)
 	{
 		if(area.IsInGroup("a"))
 		{
-			loseLife();
+			loseLife(350, 1, "bees");
+		}
+		if(area.IsInGroup("death"))
+		{
+			loseLife(550, 2, "death");
 		}
 	}
 	private void set_menuPause(Boolean value)
 	{
 		GetTree().Paused = value;
 		menuPause.Visible = value;
+	}
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		if (@event is InputEventKey eventKey)
+			if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Q)
+			{
+				if(Level == 1)
+				{
+					//Level = 2;
+					GetTree().ChangeScene("res://Level2.tscn");
+					Level ++;
+				}
+				else if(Level == 2) 
+				{
+					GetTree().ChangeScene("res://Level3.tscn");
+					Level ++;
+				}
+				else if(Level == 3)
+				{
+					//Level = 3;
+					GetTree().ChangeScene("res://EndingScene.tscn");
+				}
+			}
 	}
 }
 

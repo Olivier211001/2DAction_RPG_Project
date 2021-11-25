@@ -13,6 +13,7 @@ public class portal : KinematicBody2D
 	{
 		if(area.IsInGroup("player"))
 		{
+			Player.Level = 2;
 			GetTree().ChangeScene("res://Level2.tscn");
 		}		
 	}

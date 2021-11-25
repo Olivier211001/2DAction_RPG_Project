@@ -21,10 +21,11 @@ scale = Vector2( 4.50416, 5.68533 )
 texture = ExtResource( 3 )
 
 [node name="death" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1822.1, 363.906 )
+position = Vector2( 738.767, 371.033 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -0.340759, 74.4132 )
+scale = Vector2( 1, 0.997606 )
 
 [node name="Contour" type="StaticBody2D" parent="."]
 
@@ -33,7 +34,7 @@ position = Vector2( -422.856, 419.08 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Contour"]
-position = Vector2( 1924.34, 419.093 )
+position = Vector2( 1449.7, 429.688 )
 shape = SubResource( 1 )
 
 [node name="contour2" type="StaticBody2D" parent="."]
@@ -52,3 +53,43 @@ shape = SubResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="door"]
 position = Vector2( -6.14981, -58.2492 )
 shape = SubResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -502.527
+margin_top = -272.436
+margin_right = -426.527
+margin_bottom = 1134.56
+color = Color( 0.643137, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+margin_left = 1455.59
+margin_top = -278.394
+margin_right = 1531.59
+margin_bottom = 1142.61
+color = Color( 0.643137, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+margin_left = -506.0
+margin_top = -328.0
+margin_right = 1530.0
+margin_bottom = -271.0
+color = Color( 0.643137, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+margin_left = -502.0
+margin_top = 1133.0
+margin_right = 1533.0
+margin_bottom = 1190.0
+color = Color( 0.643137, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
