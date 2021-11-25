@@ -4,12 +4,12 @@ using System;
 public class Bee : KinematicBody2D
 {
 	private int touch = 0;
-	AnimatedSprite beeAnim;
+	private AnimatedSprite beeAnim;
 
-	Vector2 knockback = Vector2.Zero;
+	private Vector2 knockback = Vector2.Zero;
 
-	bool KB = false;
-	bool attack = false;
+	private bool KB = false;
+	private bool attack = false;
 	public override void _Ready()
 	{
 		beeAnim = GetNode<AnimatedSprite>("AnimatedSprite");

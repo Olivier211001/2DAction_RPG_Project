@@ -27,6 +27,7 @@ __meta__ = {
 }
 
 [node name="label2" type="Label" parent="."]
+visible = false
 margin_left = 400.0
 margin_top = 8.0
 margin_right = 494.0
@@ -37,6 +38,7 @@ __meta__ = {
 }
 
 [node name="Label3" type="Label" parent="."]
+visible = false
 margin_left = 400.0
 margin_top = 32.0
 margin_right = 440.0
@@ -47,6 +49,7 @@ __meta__ = {
 }
 
 [node name="vectorY" type="Label" parent="."]
+visible = false
 margin_left = 488.0
 margin_top = 32.0
 margin_right = 568.0
@@ -56,10 +59,53 @@ __meta__ = {
 }
 
 [node name="speed" type="Label" parent="."]
+visible = false
 margin_left = 488.0
 margin_top = 8.0
 margin_right = 560.0
 margin_bottom = 24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="."]
+visible = false
+margin_left = 616.0
+margin_top = 8.0
+margin_right = 688.0
+margin_bottom = 32.0
+text = "Position :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="position" type="Label" parent="."]
+visible = false
+margin_left = 616.0
+margin_top = 32.0
+margin_right = 680.0
+margin_bottom = 56.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="."]
+visible = false
+margin_left = 800.0
+margin_top = 8.0
+margin_right = 859.0
+margin_bottom = 22.0
+text = "Velocity :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Velocity" type="Label" parent="."]
+visible = false
+margin_left = 800.0
+margin_top = 32.0
+margin_right = 872.0
+margin_bottom = 54.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

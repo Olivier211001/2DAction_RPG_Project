@@ -4,7 +4,7 @@ using System;
 public class arrow : Area2D
 {
 	
-	const int SPEED = 1000;
+	private const int SPEED = 1000;
 	public Vector2 Velocity;
 
 	public string patate = "patate";

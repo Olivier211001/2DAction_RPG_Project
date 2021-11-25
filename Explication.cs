@@ -3,9 +3,9 @@ using System;
 
 public class Explication : Control
 {
-	bool already = false;
+	private bool already = false;
 
-	ColorRect exp; 
+	private ColorRect exp; 
 	public override void _Ready()
 	{
 		exp = GetNode<ColorRect>("screen");

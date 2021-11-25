@@ -3,7 +3,7 @@ using System;
 
 public class GameOver : Node2D
 {
-	KinematicBody2D player;
+	private KinematicBody2D player;
 
 	public override void _Ready()
 	{

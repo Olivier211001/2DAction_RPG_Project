@@ -4,8 +4,8 @@ using System;
 public class Butterfly : KinematicBody2D
 {
 	
-	const int ACCELERATION = 300;
-	const int MAX_SPEED = 300;
+	private const int ACCELERATION = 300;
+	private const int MAX_SPEED = 300;
 
 	private Vector2 direction;
 
@@ -14,16 +14,14 @@ public class Butterfly : KinematicBody2D
 	private Vector2 dd;
 
 
-	//private AnimatedSprite butterfly;
 
-	KinematicBody2D player;
+	private KinematicBody2D player;
 
-	KinematicBody2D bf;
+	private KinematicBody2D bf;
 	public override void _Ready()
 	{
 		dd.x = 40;
 		dd.y = 50;
-		//butterfly = GetNode<AnimatedSprite>("AnimatedSprite");
 	}
 
 	public override void _PhysicsProcess(float delta)

@@ -46,6 +46,8 @@ public class Player : KinematicBody2D
 
 	public static Vector2 pos;
 
+	public static Vector2 VP;
+
 	[Export]
 	public int Speed = 200;
 	Color yellow = new Color(247, 255, 0, 255);
@@ -144,6 +146,7 @@ public class Player : KinematicBody2D
 			 Velocity = Velocity.MoveToward(Vector2.Zero, FRICTION);
 	    }
 	    Velocity = MoveAndSlide(Velocity);
+		VP = Velocity;
 	}
 	
 	private void _on_Sprite_animation_finished()

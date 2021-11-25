@@ -5,7 +5,7 @@ public class cible : StaticBody2D
 {
  
 	public static int count;
- 	PackedScene player;
+ 	private PackedScene player;
 	public override void _Ready()
 	{
 		player = (PackedScene)ResourceLoader.Load("res://Player.tscn");

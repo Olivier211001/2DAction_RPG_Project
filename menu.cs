@@ -3,13 +3,13 @@ using System;
 
 public class menu : Node2D
 {
-	PackedScene ARROW;
-	Position2D position;
-	Position2D position2;
-	Position2D position3;
-	AudioStreamPlayer music;
-	Button musciButton;
-	float  musicPosition = 0;
+	private PackedScene ARROW;
+	private Position2D position;
+	private Position2D position2;
+	private Position2D position3;
+	private AudioStreamPlayer music;
+	private Button musciButton;
+	private float  musicPosition = 0;
 	public override void _Ready()
 	{
 		ARROW = (PackedScene)ResourceLoader.Load("res://arrow.tscn");

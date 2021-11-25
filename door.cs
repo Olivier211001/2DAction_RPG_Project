@@ -4,9 +4,9 @@ using System;
 public class door : KinematicBody2D
 {
   
-	AnimatedSprite doorAnim;
+	private AnimatedSprite doorAnim;
 
-	int checkCible;
+	private int checkCible;
 
 	public override void _Ready()
 	{

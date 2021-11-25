@@ -3,8 +3,8 @@ using System;
 
 public class portal : KinematicBody2D
 {
-	int level;
-	KinematicBody2D player;
+	private int level;
+	private KinematicBody2D player;
 	public override void _Ready()
 	{
 		//player = GetNode<KinematicBody2D>("Player");
