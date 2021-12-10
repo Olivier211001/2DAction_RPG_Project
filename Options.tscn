@@ -16,10 +16,21 @@ margin_right = 1024.0
 margin_bottom = 600.0
 text = "
  Controls:
-
+-------------------------------------------------------
  - Walk : A, W, D, S
 
  - Attack : Space or Mouse Left Click
+
+-Pause : P
+
+-Geek debuggs data : G
+-------------------------------------------------------
+
+
+
+*Cheat code*
+-------------------------------------------------------
+- Skip Level : Q 
 
 "
 __meta__ = {
